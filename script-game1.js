@@ -34,29 +34,16 @@ document.querySelector(".check").addEventListener("click", function () {
       highscore = score;
       document.querySelector(".highscore").textContent = highscore;
     }
-
-    // When player too high
-  } else if (guess > secretNumber) {
+  } else if (guess !== secretNumber) {
     if (score > 1) {
-      score = score - 1;
-      document.querySelector(".message").textContent = "Go lower!";
+      document.querySelector(".message").textContent =
+        guess > secretNumber ? "Too high" : "Too low";
+      score--;
+
       document.querySelector(".score").textContent = score;
     } else {
+      document.querySelector(".message").textContent = "you lose";
       document.querySelector(".score").textContent = 0;
-
-      document.querySelector(".message").textContent = "You lose!";
-    }
-    // When player too low
-  } else if (guess < secretNumber) {
-    if (score > 1) {
-      score = score - 1;
-
-      document.querySelector(".message").textContent = "Go higher!";
-      document.querySelector(".score").textContent = score;
-    } else {
-      document.querySelector(".score").textContent = 0;
-
-      document.querySelector(".message").textContent = "You lose!";
     }
   }
 });
